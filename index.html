@@ -1121,7 +1121,7 @@
     
 
     <!-- Musica de fondo -->
-    <!--<script>
+    <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
@@ -1184,83 +1184,7 @@
 
 
       });
-    </script>-->
-
-    <!-- Musica de fondo -->
-<script>
-  // 2. This code loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  // 3. This function creates an <iframe> (and YouTube player)
-  //    after the API code downloads.
-  var player;
-
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player-musica-fondo', {
-      height: '10',
-      width: '10',
-      playerVars: {
-        playlist: 'jJPMnTXl63E',
-        loop: 1
-      },
-      events: {
-        'onReady': function(event) {
-          event.target.setVolume(80);
-          var targetWindow = event.target.getIframe().contentWindow;
-          targetWindow.postMessage('Mensaje desde tu script', 'https://www.youtube.com');
-        }
-      }
-    });
-  }
-
-  // 4. The API will call this function when the video player is ready.
-  function onPlayerReady(event) {
-    // Hacer algo si es necesario cuando el reproductor está listo.
-  }
-
-  // Pausar video
-  function pauseVideo() {
-    player.pauseVideo();
-  }
-
-  // Click en controlador musica
-  $('body').on('click', '#play-pause-music', function(e) {
-    e.preventDefault();
-
-    // Estado actual
-    var estadoMusic = $(this).attr('data-estado-music');
-
-    // Pause music
-    if (estadoMusic == 'pause') {
-      $(this).attr('data-estado-music', 'play');
-      animMusicAnimIcon.play();
-      player.playVideo();
-    }
-
-    // Play music
-    if (estadoMusic == 'play') {
-      $(this).attr('data-estado-music', 'pause');
-      player.pauseVideo();
-      animMusicAnimIcon.stop();
-    }
-  });
-
-  // Manejar mensajes en la ventana receptora (tu página web)
-  window.addEventListener('message', function(event) {
-    // Verificar si el mensaje proviene del dominio esperado
-    if (event.origin === 'https://www.youtube.com') {
-      // Hacer algo con el mensaje recibido desde YouTube
-      console.log('Mensaje recibido desde YouTube:', event.data);
-    }
-  });
-
-</script>
-
-  
+    </script>
 
 
   <!-- Animaciones de diseño -->
