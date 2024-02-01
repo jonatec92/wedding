@@ -85,7 +85,7 @@
 
       <div class="modal-body text-center">
         <p>
-          Bienvenidos a la invitación de
+          Nuestra boda<br>
           Jonatan & Micaela</p>
 
         <span>La música de fondo es parte de la experiencia</span>
@@ -225,13 +225,13 @@
 
           <div class="info-box">
             <h6>Día</h6>
-            <p>Sábado 20 de Abril - 20hs</p>
+            <p>Sábado 20 de Abril - <strong>20hs</strong></p>
             <a href="#" class="boton addeventatc">
 
               <span class="nameBtn">Agendar</span>
 
               <span class="start">2024-04-20 20:00:00</span>
-              <span class="end">2024-04-21 05:00:00</span>
+              <span class="end">2024-04-21 21:30:00</span>
               <span class="timezone">America/Argentina/Buenos_Aires</span>
               <span class="title">Boda de Jona y Mica (Ceremonia)</span>
 
@@ -240,13 +240,13 @@
 
           <div class="info-box">
             <h6>Lugar</h6>
-            <p>Salon de eventos "El Golf"</p>
+            <p>Salon de eventos Libertad</p>
             <a href="#" data-evento="Ceremonia" class="boton confirmar-asistencia">Confirmar asistencia</a>
           </div>
 
           <div class="info-box">
             <h6>Dirección</h6>
-            <p>Jufre 1599, Libertad, Merlo - BsAs</p>
+            <p>Jufre 1611 <strong>2° piso</strong>, Libertad, Merlo - BsAs</p>
             <a href="#" data-evento="Ceremonia" class="boton modal-como-llegar">¿Cómo llegar?</a>
           </div>
 
@@ -268,7 +268,7 @@
 
           <div class="info-box">
             <h6>Día</h6>
-            <p>Sábado 20 de Abril  - 21:30hs</p>
+            <p>Sábado 20 de Abril  - <strong>21:30hs</strong></p>
             <a href="#" class="boton addeventatc">
               <span class="nameBtn">Agendar</span>
 
@@ -281,13 +281,13 @@
 
           <div class="info-box">
             <h6>Lugar</h6>
-            <p>Salon de eventos "El Golf"</p>
+            <p>Salon de eventos Libertad</p>
             <a href="#" data-evento="Fiesta" class="boton confirmar-asistencia">Confirmar asistencia</a>
           </div>
 
           <div class="info-box">
             <h6>Dirección</h6>
-            <p>Jufre 1599, Libertad, Merlo - BsAs</p>
+            <p>Jufre 1611 <strong>1° piso</strong>, Libertad, Merlo - BsAs</p>
             <a href="#" data-evento="Fiesta" class="boton modal-como-llegar">¿Cómo llegar?</a>
           </div>
 
@@ -542,13 +542,13 @@
 
       <div class="w-100">
 
-        <a target="_blank" href="https://www.instagram.com/" class="hashtag">#jonaymica</a>
+        <a target="_blank" href="https://www.instagram.com/explore/tags/jonaymica/" class="hashtag">#jonaymica</a>
 
       </div>
 
       <br>
 
-      <a target="_blank" href="https://www.instagram.com/" class="boton">Ver en Instagram</a>
+      <a target="_blank" href="https://www.instagram.com/stories/highlights/17996260484232931/" class="boton">Ver en Instagram</a>
 
     </div>
   </div>
@@ -589,12 +589,12 @@
           <li>
             <div title="" class="addeventatc">
 
-              <span class="nameBtn">Agendar Fiesta</span>
+              <span class="nameBtn">Agendar Ceremonia</span>
 
               <span class="start">2024-04-20 20:00:00</span>
-              <span class="end">2024-04-21 05:00:00</span>
+              <span class="end">2024-04-21 21:30:00</span>
               <span class="timezone">America/Argentina/Buenos_Aires</span>
-              <span class="title">Boda de Jona y Mica (Fiesta)</span>
+              <span class="title">Boda de Jona y Mica (Ceremonia)</span>
 
             </div>
           </li>
@@ -602,12 +602,12 @@
           <li>
             <div title="" class="addeventatc">
 
-              <span class="nameBtn">Agendar Ceremonia</span>
+              <span class="nameBtn">Agendar Fiesta</span>
 
-              <span class="start">2024-04-20 20:00:00</span>
+              <span class="start">2024-04-20 21:30:00</span>
               <span class="end">2024-04-21 05:00:00</span>
               <span class="timezone">America/Argentina/Buenos_Aires</span>
-              <span class="title">Boda de Jona y Mica (Ceremonia)</span>
+              <span class="title">Boda de Jona y Mica (Fiesta)</span>
 
             </div>
           </li>
@@ -940,6 +940,7 @@
 <!-- Muestro el banner si tiene parametro "banner" y si el modelo es visible en la web (para que tenga donde dirigir) -->
 
   <!-- Scripts -->
+
   <!-- Varaibles para JS desde config -->
 <script>
   var _pathApp = "./";
@@ -1492,7 +1493,7 @@
 
 
   <!-- Modal Confirmar asistencia -->
-  <script>
+  <!--<script>
     // Abrir modal
     $('body').on('click', 'a.confirmar-asistencia', function(e) {
 
@@ -1660,8 +1661,164 @@
 
 
     });
-  </script>
+  </script>-->
+  <script>
+    var googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc6JEuaedFyBM7YkfUWQVg-O6lwIWkYC6HgG07Wn7jNveEV_g/formResponse';
+    // Abrir modal
+    $('body').on('click', 'a.confirmar-asistencia', function(e) {
 
+      e.preventDefault();
+
+      // Remuevo mensajes de error anteriores
+      $("#error-form").remove();
+
+      var evento = $(this).attr('data-evento');
+
+      $('#eventoAsistencia').val(evento);
+
+
+      if (evento == 'Fiesta') {
+        var titleModalAsistencia = lang_titleModalAsistenciaFiesta;
+        var rutaImgModalAsistencia = _pathProducto + 'img/img_circuloFiesta.svg';
+      }
+
+      if (evento == 'Ceremonia') {
+        var titleModalAsistencia = lang_titleModalAsistenciaCeremonia;
+        var rutaImgModalAsistencia = _pathProducto + 'img/img_circuloCeremonia.svg';
+      }
+
+      $('#modalAsistencia .modal-title').text(titleModalAsistencia);
+      $('#modalAsistencia .img-top-modal img').attr('src', rutaImgModalAsistencia);
+
+
+      $('#modalAsistencia').modal({
+        backdrop: 'static'
+      })
+
+    });
+
+
+    // Validacion de form.
+    function isOkAsistencia() {
+
+      // Remuevo mensajes de error anteriores
+      $("#error-form").remove();
+
+      // Variables necesarias para la validacion
+      var flag = true;
+      var err = '';
+
+
+      // Variables del form para validar.
+      var asistenteName = $.trim($("#nombreAsistente").val());
+      var asistenteComentarios = $.trim($("#comentariosAsistente").val());
+
+
+      // Nombre
+      if (asistenteName == '') {
+        flag = false;
+        err = lang_nombreRequerido;
+      } else {
+        if (asistenteName.length > 20) {
+          flag = false;
+          err = lang_caracteresNombreAsistencia;
+        }
+      }
+
+      // Comentarios
+      if (asistenteComentarios != '') {
+        if (asistenteComentarios.length > 100) {
+          flag = false;
+          err = lang_caracteresComentariosAsistencia;
+        }
+      }
+
+      // Si hay error
+      if (flag === false) {
+
+        // Imprimo el error
+        $('#formAsistencia').after('<span id="error-form">' + err + '</span>');
+
+      }
+
+      // Retorno el estado de la validacion
+      return flag;
+
+    }
+
+
+    // Enviar asistencia
+    $('body').on('click', '#sendAsistencia', function(e) {
+    e.preventDefault();
+
+    if (isOkAsistencia()) {
+      $("#sendAsistencia").text(lang_informandoAsistencia + "...");
+      $("#sendAsistencia").prop("disabled", true);
+
+      var formulario = $("#formAsistencia")[0];
+      var datos = new URLSearchParams(new FormData(formulario));
+
+      // Envío con fetch los datos mediante POST al formulario de Google
+      fetch(googleFormUrl, {
+        method: "POST",
+        body: datos,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then(res => res.json())
+      .then(data => {
+
+            // Si recibo error 
+            if (data.error === true) {
+
+              $("#sendAsistencia").text(lang_confirmarAsistencia);
+              $("#sendAsistencia").prop("disabled", false);
+
+              // Imprimo el error
+              $('#formAsistencia').after('<span id="error-form">' + data.desc + '</span>');
+            }
+
+            // Si no hay error 
+            if (data.error === false) {
+
+              $("#sendAsistencia").text(lang_confirmarAsistencia);
+              $("#sendAsistencia").prop("disabled", false);
+
+
+              // Oculto elementos del form y reseteo
+              $('#formAsistencia')[0].reset();
+              $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').hide();
+
+
+
+              // Acomodo el css para centrar mensaje
+              $('#modalAsistencia .modal-body').addClass('fix-height');
+
+              // Muestro mensaje de exito
+              $('#modalAsistencia .msj-content').html(
+                "<h5>" + lang_asistenciaMsjExito_1 + "</h5><p>" + lang_asistenciaMsjExito_2 + "</p>"
+              ).show();
+
+
+              // Cierro modal y vuelvo a activar form
+              setTimeout(function() {
+
+                $('#modalAsistencia').modal('hide');
+                $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').show();
+                $('#modalAsistencia .msj-content').html('').hide();
+                $('#modalAsistencia .modal-body').removeClass('fix-height');
+
+              }, 4000);
+
+            }
+
+          });
+      }
+
+
+    });
+  </script>
 
   <!-- Cuenta regresiva -->
   <script>
