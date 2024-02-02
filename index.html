@@ -28,6 +28,7 @@
 <link rel='stylesheet' href='./css/addEvent.css'/>
 <link rel='stylesheet' href='./css/style.css'/>
 <link rel='stylesheet' href='./css/responsive.css'/>
+<script src="https://kit.fontawesome.com/e5fc0451f1.js" crossorigin="anonymous"></script>
 
 <!-- Color para navegadores moviles -->
 <meta name="theme-color" content="#C6D7CF">
@@ -819,7 +820,9 @@
 
       <div class="modal-body">
 
-        <p>Contenido Dress Code</p>
+        <p><strong>ELEGANTE SPORT.</strong><br><br>
+          En nuestra noche te pedimos...<br><strong>NO</strong> usar prendas colores <strong>verdes</strong>
+          y color <strong>blanco</strong>, ni ninguna que se asemeje a dichos colores</p>
 
       </div>
 
@@ -857,7 +860,13 @@
 
       <div class="modal-body">
 
-        <p>Contenido Tips y Notas</p>
+        <p><strong>Queremos compartirte algunos puntos importantes:</strong><br><br>
+          <i class="far fa-clock" style="color: #BFA880;font-size: 1.5rem;"></i> Para nosotros es importante la puntualidad para que juntos podamos aprovechar al maximo cada momento y no te pierdas de nada!<br><br>
+          <i class="fas fa-exclamation" style="color: #BFA880;font-size: 1.5rem;"></i> Una vez que se ingrese al salon y todos los invitados esten adentro se cerraran las puertas,quien salga despues de ingresar,no podra volver a entrar al salon.<br><br>
+          <i class="fas fa-ban" style="color: #BFA880;font-size: 1.5rem;"></i> Esta prohibido fumar.<br><br>
+          
+          Esperamos que puedas disfrutar la noche junto a nosotros!<br><br>
+          Muchas gracias!</p>
 
       </div>
 
@@ -1575,6 +1584,22 @@
 
     }
 
+    // Función para enviar los datos del formulario por WhatsApp
+    function enviarPorWhatsApp(datos) {
+        // Reemplaza "123456789" con el número de teléfono al que deseas enviar el mensaje
+        var numeroTelefono = "5491138490661";
+        
+        // Construye el enlace de WhatsApp con el mensaje predefinido
+        var mensaje = "Asistencia a la Ceremonia%0A";
+        mensaje +="Nombre: " + datos.get('nombre') + "%0A";
+        mensaje += "Asistencia: " + datos.get('asistencia') + "%0A";
+        mensaje += "Comentarios: " + datos.get('comentarios') + "%0A";
+        var enlaceWhatsApp = "https://api.whatsapp.com/send?phone=" + numeroTelefono + "&text=" + mensaje;
+
+        // Abre la ventana de WhatsApp
+        window.open(enlaceWhatsApp, '_blank');
+    }
+
 
     // Enviar asistencia
     $('body').on('click', '#sendAsistencia', function(e) {
@@ -1594,16 +1619,35 @@
 
         // Obtengo los datos del formulario
         var datos = new FormData(formulario);
+        enviarPorWhatsApp(datos);
+        $("#sendAsistencia").text(lang_confirmarAsistencia);
+        $("#sendAsistencia").prop("disabled", false);
 
+        // Oculto elementos del form y reseteo
+        $('#formAsistencia')[0].reset();
+        $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').hide();
 
-        // Visualizar como viajan los datos
-        // for (var pair of datos.entries()) {
-        //   console.log(pair[0] + ", " + pair[1]);
-        // }
+        // Acomodo el css para centrar mensaje
+        $('#modalAsistencia .modal-body').addClass('fix-height');
+
+        // Muestro mensaje de exito
+        $('#modalAsistencia .msj-content').html(
+                "<h5>" + lang_asistenciaMsjExito_1 + "</h5><p>" + lang_asistenciaMsjExito_2 + "</p>"
+              ).show();
+
+        // Cierro modal y vuelvo a activar form
+        setTimeout(function() {
+          $('#modalAsistencia').modal('hide');
+          $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').show();
+          $('#modalAsistencia .msj-content').html('').hide();
+          $('#modalAsistencia .modal-body').removeClass('fix-height');
+
+        }, 10000);
+
 
 
         // Envio con fetch los datos mediante POST
-        fetch(_pathApp + "producto/fetchs/confirmar-asistencia.php", {
+        /*fetch(_pathApp + "producto/fetchs/confirmar-asistencia.php", {
             method: "POST",
             body: datos
           })
@@ -1655,7 +1699,7 @@
 
             }
 
-          });
+          });*/
       }
 
 
