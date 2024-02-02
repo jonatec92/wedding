@@ -1075,6 +1075,7 @@ footer p a:hover{
 
 .modal-dialog{
   font-family: var(--fuente-2);
+  margin-top: 4rem;
 }
 
 .modal-dialog .modal-title{
