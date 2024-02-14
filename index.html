@@ -684,7 +684,7 @@
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-control" id="nombreAsistente" name='nombre' placeholder="Ingrese su nombre completo">
+              <input type="text" class="form-control" id="nombreAsistente" name='nombre' placeholder="Ingrese nombre o familia y cantidad de asistentes.">
             </div>
 
 
@@ -707,7 +707,8 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" id="sendAsistencia" class="boton">Enviar</button>
+        <button type="button" id="sendAsistencia" class="boton">Enviar a Mica</button>
+        <button type="button" id="sendAsistencia1" class="boton">Enviar a Jona</button>
       </div>
     </div>
 
@@ -1576,7 +1577,7 @@
 
     }
 
-    // Función para enviar los datos del formulario por WhatsApp
+    // Función para enviar los datos del formulario por WhatsApp a Mica
     function enviarPorWhatsApp(datos) {
         // Reemplaza "123456789" con el número de teléfono al que deseas enviar el mensaje
         var numeroTelefono = "5491138490661";
@@ -1592,8 +1593,24 @@
         window.open(enlaceWhatsApp, '_blank');
     }
 
+    // Función para enviar los datos del formulario por WhatsApp a jona
+    function enviarPorWhatsApp1(datos) {
+        // Reemplaza "123456789" con el número de teléfono al que deseas enviar el mensaje
+        var numeroTelefono = "5491163536950";
+        
+        // Construye el enlace de WhatsApp con el mensaje predefinido
+        var mensaje = "Asistencia a la Ceremonia%0A";
+        mensaje +="Nombre: " + datos.get('nombre') + "%0A";
+        mensaje += "Asistencia: " + datos.get('asistencia') + "%0A";
+        mensaje += "Comentarios: " + datos.get('comentarios') + "%0A";
+        var enlaceWhatsApp = "https://api.whatsapp.com/send?phone=" + numeroTelefono + "&text=" + mensaje;
 
-    // Enviar asistencia
+        // Abre la ventana de WhatsApp
+        window.open(enlaceWhatsApp, '_blank');
+    }
+
+
+    // Enviar asistencia con Mica
     $('body').on('click', '#sendAsistencia', function(e) {
 
       e.preventDefault();
@@ -1635,67 +1652,54 @@
           $('#modalAsistencia .modal-body').removeClass('fix-height');
 
         }, 10000);
-
-
-
-        // Envio con fetch los datos mediante POST
-        /*fetch(_pathApp + "producto/fetchs/confirmar-asistencia.php", {
-            method: "POST",
-            body: datos
-          })
-          // Promesas fetch
-          .then(res => res.json())
-          .then(data => {
-
-            // Si recibo error 
-            if (data.error === true) {
-
-              $("#sendAsistencia").text(lang_confirmarAsistencia);
-              $("#sendAsistencia").prop("disabled", false);
-
-              // Imprimo el error
-              $('#formAsistencia').after('<span id="error-form">' + data.desc + '</span>');
-            }
-
-            // Si no hay error 
-            if (data.error === false) {
-
-              $("#sendAsistencia").text(lang_confirmarAsistencia);
-              $("#sendAsistencia").prop("disabled", false);
-
-
-              // Oculto elementos del form y reseteo
-              $('#formAsistencia')[0].reset();
-              $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').hide();
-
-
-
-              // Acomodo el css para centrar mensaje
-              $('#modalAsistencia .modal-body').addClass('fix-height');
-
-              // Muestro mensaje de exito
-              $('#modalAsistencia .msj-content').html(
-                "<h5>" + lang_asistenciaMsjExito_1 + "</h5><p>" + lang_asistenciaMsjExito_2 + "</p>"
-              ).show();
-
-
-              // Cierro modal y vuelvo a activar form
-              setTimeout(function() {
-
-                $('#modalAsistencia').modal('hide');
-                $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').show();
-                $('#modalAsistencia .msj-content').html('').hide();
-                $('#modalAsistencia .modal-body').removeClass('fix-height');
-
-              }, 4000);
-
-            }
-
-          });*/
       }
-
-
     });
+
+
+    // Enviar asistencia con Jona
+    $('body').on('click', '#sendAsistencia1', function(e) {
+
+e.preventDefault();
+
+
+if (isOkAsistencia()) //Form bien validado
+{
+
+  // Load and disabled buttom.
+  $("#sendAsistencia").text(lang_informandoAsistencia + "...");
+  $("#sendAsistencia").prop("disabled", true);
+
+  // Obtengo el Form.
+  var formulario = $("#formAsistencia")[0];
+
+  // Obtengo los datos del formulario
+  var datos = new FormData(formulario);
+  enviarPorWhatsApp1(datos);
+  $("#sendAsistencia").text(lang_confirmarAsistencia);
+  $("#sendAsistencia").prop("disabled", false);
+
+  // Oculto elementos del form y reseteo
+  $('#formAsistencia')[0].reset();
+  $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').hide();
+
+  // Acomodo el css para centrar mensaje
+  $('#modalAsistencia .modal-body').addClass('fix-height');
+
+  // Muestro mensaje de exito
+  $('#modalAsistencia .msj-content').html(
+          "<h5>" + lang_asistenciaMsjExito_1 + "</h5><p>" + lang_asistenciaMsjExito_2 + "</p>"
+        ).show();
+
+  // Cierro modal y vuelvo a activar form
+  setTimeout(function() {
+    $('#modalAsistencia').modal('hide');
+    $('#modalAsistencia .formulario-content, #modalAsistencia .modal-footer, #modalAsistencia h5').show();
+    $('#modalAsistencia .msj-content').html('').hide();
+    $('#modalAsistencia .modal-body').removeClass('fix-height');
+
+  }, 10000);
+}
+});
   </script>
 
 
