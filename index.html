@@ -498,21 +498,36 @@
     <div class="row text-center d-flex justify-content-center align-items-center">
 
       <h2 class="title">Dedicatorias</h2>
-      <p class="subtitle">Deseas enviarnos una dedicatoria..?</p>
-
-      <div class="w-100">
-
-        <div class="anim-regalos"></div>
-
-      </div>
-
+      <p class="subtitle"><br>Deseas enviarnos una dedicatoria..?</p>
       <br>
 
-      <a href="#" class="boton modal-regalos">Ver más</a>
+      <a href="#" class="boton modal-dedicatoria">Ver más</a>
 
     </div>
+
+    <br><br><br>
+
+    <div class="container">
+      <div class="row text-center d-flex justify-content-center align-items-center">
+  
+        <h2 class="title">Regalos</h2>
+        <p class="subtitle"><br>Si deseas regalarnos algo más que tu hermosa presencia...</p>
+  
+        <div class="w-100">
+  
+          <div class="anim-regalos"></div>
+  
+        </div>
+  
+        <br>
+  
+        <a href="#" class="boton modal-regalos">Ver más</a>
+  
+      </div>
+    
   </div>
 </section>
+
     <!-- Instagram-->
     <section class="instagram">
 
@@ -869,8 +884,8 @@
     </div>
   </div>
 </div>
-    <!-- Modal regalos-->
-    <div id="modalRegalos" class="modal fade" tabindex="-1">
+    <!-- Modal Dedicatoria-->
+    <div id="modalDedicatoria" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
 
@@ -905,6 +920,45 @@
     </div>
   </div>
 </div>
+
+    <!-- Modal regalos-->
+    <div id="modalRegalos" class="modal fade" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+    
+          <div class="img-top-modal d-flex justify-content-center align-items-start">
+    
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+    
+            <div class="white-circle-icon">
+              <img class="" src="./img/img_circuloRegalo.svg" alt="">
+            </div>
+    
+          </div>
+    
+    
+    
+          <div class="modal-header">
+    
+            <h5 class="modal-title">Regalos</h5>
+    
+          </div>
+    
+          <div class="modal-body">
+            <p><i class="fas fa-gifts" style="color: #BFA880;font-size: 1.4rem;"></i> Puedes regalarnos lo que desees y llevarlo fisicamente el dia del evento. 😊​ <br><br>📱​ Si lo prefieres hacer de forma monetaria, te dejamos los datos de Tranferencia a disposición.</p>
+            <p><strong><span style="font-size: 1.5rem;">Alias: <span id="alias">jonaymica.boda</span></span><a onclick="copiarTexto('alias')"><i class="fas fa-copy" style="font-size: 1.4rem;padding-left: 10px;"></i></a><br></strong>
+              <strong style="padding-top: 5px;">CVU: <span id="cbu">0000003100001401369448</span></span><a onclick="copiarTexto('cbu')"><i class="fas fa-copy" style="padding-left: 10px;"></i></a><br></strong>
+              <strong>Jonatan Emanuel Choque<br></strong>
+              
+              </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!-- Modal mapa-->
     <div id="modalMapa" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -938,7 +992,30 @@
   </div>
 </div>
     <!-- Modal cambio de idioma -->
+    <!--FUNCION COPIAR TEXTO-->
+
+    <script>
+      function copiarTexto(a) {
+        // Seleccionar el texto
+        var textoACopiar = document.getElementById(a);
+        var seleccion = window.getSelection();
+        var rango = document.createRange();
+        rango.selectNodeContents(textoACopiar);
+        seleccion.removeAllRanges();
+        seleccion.addRange(rango);
     
+        // Copiar el texto al portapapeles
+        document.execCommand('copy');
+    
+        // Limpiar la selección
+        seleccion.removeAllRanges();
+    
+        // Mostrar algún mensaje o realizar otras acciones si es necesario
+        alert('Texto copiado al portapapeles');
+      }
+    </script>
+
+
 <!-- Muestro el banner si tiene parametro "banner" y si el modelo es visible en la web (para que tenga donde dirigir) -->
 
   <!-- Scripts -->
@@ -1951,6 +2028,19 @@ if (isOkAsistencia()) //Form bien validado
     });
   </script>
 
+<!-- Modal Dedicatoria -->
+<script>
+  // Abrir modal
+  $('body').on('click', 'a.modal-dedicatoria', function(e) {
+
+    e.preventDefault();
+
+    $('#modalDedicatoria').modal({
+      backdrop: 'static'
+    })
+
+  });
+</script>
 
   <!-- Modal regalos -->
   <script>

@@ -393,7 +393,7 @@
 
   /* Modal regalos */
 
-  #modalRegalos .modal-content{
+  #modalRegalos .modal-content, #modalDedicatoria .modal-content{
     border: none;
     background: none;
     text-align: center;
@@ -406,12 +406,12 @@
     background-position: 100px center;
   }
 
-  #modalRegalos .modal-body{
+  #modalRegalos .modal-body, #modalDedicatoria .modal-body{
     padding: 1rem 1.5rem;
   }
 
 
-  #modalRegalos .close{
+  #modalRegalos .close, #modalDedicatoria .close{
     top: 10px;
     right: 55px;
   }

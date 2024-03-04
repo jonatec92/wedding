@@ -1202,7 +1202,7 @@ footer p a:hover{
   padding-left: 5px;
 }
 
-#modalAsistencia .boton, #modalRegalos .boton {
+#modalAsistencia .boton, #modalRegalos .boton, #modalDedicatoria .boton {
   outline: none;
   border: none;
 }
@@ -1555,42 +1555,42 @@ footer p a:hover{
 
 
 
-#modalRegalos .modal-content{
+#modalRegalos .modal-content, #modalDedicatoria .modal-content{
   text-align: center;
   border: none;
   padding-bottom: 20px;
 }
 
 
-#modalRegalos .modal-header{
+#modalRegalos .modal-header, #modalDedicatoria .modal-header{
   border: none;
   display: inline-block;
   padding: 0;
 }
 
 
-#modalRegalos .modal-header .modal-title{
+#modalRegalos .modal-header .modal-title, #modalDedicatoria .modal-header .modal-title{
   font-size: 25px;
 }
 
-#modalRegalos .modal-footer{
+#modalRegalos .modal-footer, #modalDedicatoria .modal-footer{
   border: none;
   display: inline-block;
   padding: 0;
 }
 
 
-#modalRegalos .img-top-modal{
+#modalRegalos .img-top-modal, #modalDedicatoria .img-top-modal{
   position: relative;
   height:90px;
 }
 
-#modalRegalos .img-top-modal img{
+#modalRegalos .img-top-modal img, #modalDedicatoria .img-top-modal img{
   width: 75%;
   margin-top: 0;
 }
 
-#modalRegalos .close{
+#modalRegalos .close, #modalDedicatoria .close{
   position: absolute;
   top: -15px;
   right: 0;
@@ -1618,13 +1618,13 @@ footer p a:hover{
   transition: all 0.5s 0s ease;
 }
 
-#modalRegalos .close:hover{
+#modalRegalos .close:hover, #modalDedicatoria .close:hover{
   background-color: white;
   color: var(--color-2);
 }
 
 
-#modalRegalos .close span{
+#modalRegalos .close span, #modalDedicatoria .close span{
   display: inline-block;
   width: 100%;
   height: 100%;
